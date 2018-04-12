@@ -52,20 +52,42 @@
       //ヘッダ
       var tracking_hd = document.getElementsByName("tracking-hd");
       html_txt = html_txt + "       <header>\r\n";
+      html_txt = html_txt + "           <div class=\"container\">\r\n";
+      html_txt = html_txt + "           </div>\r\n";    
       html_txt = html_txt + "       </header>\r\n";
+      css_txt = css_txt + "header{\r\n"
+                        + "width: 820px;\r\n"
+                        + "margin: 0 auto;\r\n"
+                        + "}\r\n";
 
-      html_txt = html_txt + "       <content>\r\n";
-      html_txt = html_txt + "       </content>\r\n";
+      //メインコンテナ
+      html_txt = html_txt + "       <div class=\"mainContainer\">\r\n";
+      html_txt = html_txt + "       </div>\r\n";
 
       if(document.getElementById('sidebar_flag').checked){
-        html_txt = html_txt + "       <sidebar>\r\n";
+        html_txt = html_txt + "       <div class=\"sidebar\">\r\n";
+        css_txt = css_txt + ".sidebar{\r\n"
+                        + "width: 180px;\r\n"
+                        + "float: right;\r\n"
+                        + "}\r\n";       
 
         if(document.getElementById('ad').checked) {
           html_txt = html_txt + "         <div id=\"ad\">\r\n";
+          html_txt = html_txt + "             <a href=\"\">\r\n";
+          html_txt = html_txt + "             <img src=\"\" alt="広告画像" width=\"300px\" height=\"250px\">\r\n";
+          html_txt = html_txt + "             </a>\r\n";
+          html_txt = html_txt + "             <div id=\"ad\">\r\n";
           html_txt = html_txt + "         <div id=\"ad\">\r\n";
         }
         if(document.getElementById('topic').checked) {
           html_txt = html_txt + "         <div id=\"topic\">\r\n";
+          html_txt = html_txt + "             <a href=\"\">\r\n";
+          html_txt = html_txt + "             <img src=\"\" alt="トピック画像" width=\"100px\" height=\"100px\">\r\n";
+          html_txt = html_txt + "             </a>\r\n";
+          html_txt = html_txt + "             <a href=\"\">\r\n";
+          html_txt = html_txt + "             <p>トピック</p>\r\n";
+          html_txt = html_txt + "             </a>\r\n";
+          html_txt = html_txt + "             <div id=\"ad\">\r\n";
           html_txt = html_txt + "         <div id=\"topic\">\r\n";
         }
         if(document.getElementById('category').checked) {
@@ -76,7 +98,7 @@
           html_txt = html_txt + "         <div id=\"sns\">\r\n";
           html_txt = html_txt + "         <div id=\"sns\">\r\n";
         }
-        html_txt = html_txt + "       </sidebar>\r\n";
+        html_txt = html_txt + "       </div>\r\n";
       } 
 
 
@@ -102,8 +124,6 @@
       a.click();
 
     }
-
-
 
     </script>
 
@@ -131,8 +151,8 @@
 
 
   <h2>ヘッダ</h2>
-    <input type="radio" name="header" id="header_flag" checked="checked" onclick="header();"> つける
-    <input type="radio" name="header" id="header_flag" onclick="header();"> つけない
+    <input type="radio" name="header" id="header_flag" onclick="header();"> つける
+    <input type="radio" name="header" id="header_flag" checked="checked" onclick="header();"> つけない
 
     <div id="hd-menu">
       <input type="checkbox" name="hd-menu" id="ad"> 広告枠（画像）
@@ -142,13 +162,20 @@
     </div>
 
 
+  <h2>メニューバー</h2>
+    <input type="radio" name="header" id="menubar_flag" onclick="header();"> つける
+    <input type="radio" name="header" id="menubar_flag" checked="checked" onclick="header();"> つけない
+
+
   <h2>メインコンテナ</h2>
+
+
 
 
   <h2>サイドバー</h2>
 
-    <input type="radio" name="sidebar" id="sidebar_flag" checked="checked" onclick="sidebar();"> つける
-    <input type="radio" name="sidebar" id="no_sidebar_flag" onclick="sidebar();"> つけない
+    <input type="radio" name="sidebar" id="sidebar_flag" onclick="sidebar();"> つける
+    <input type="radio" name="sidebar" id="no_sidebar_flag" checked="checked" onclick="sidebar();"> つけない
 
     <div id="sd-menu">
       <input type="checkbox" name="sd-menu" id="ad"> 広告枠（画像）
@@ -158,6 +185,8 @@
     </div>
 
   <h2>フッター</h2>
+    <input type="radio" name="header" id="footer_flag" onclick="header();"> つける
+    <input type="radio" name="header" id="footer_flag" checked="checked" onclick="header();"> つけない
 
   <button onClick="FormSubmit();">プレビュー</button>
 
@@ -171,7 +200,6 @@
         $('#sd-menu').css('display', 'none');
       } 
    }
-
 
     function header(){
       if(document.getElementById('header_flag').checked){ //なぜかセレクタが使えないのでdocument.getElementを使う
