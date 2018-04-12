@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>HPカスタマイザ</title>
+
+
+    <script src="js/jquery.js"></script>
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <script src="js/jquery-ui.js"></script>
+
+
+    <script language="javascript" type="text/javascript">
+
+    function FormSubmit() {
+
+      var html_txt = "<!DOCTYPE HTML>\r\n" 
+                   + "<html>\r\n"
+                   + "   <head>\r\n"
+                   + "      <meta charset=\"utf-8\">\r\n";
+
+      var css_txt;
+      var js_txt ;
+
+      //タイトル
+      html_txt = html_txt + "       <title>" + document.getElementsByName("title").value + "<\/title>\r\n";
+
+
+      //ライブラリ
+      if(document.getElementById('jquery').checked) {
+         html_txt = html_txt + "           <script src=\"js/jquery.js\"><\/script>\r\n";
+      }
+      if(document.getElementById('jquery-ui').checked){
+         html_txt = html_txt + "           <script src=\"js/jquery.js\"><\/script>\r\n";
+      }
+      if(document.getElementById('bootstrap').checked){
+         html_txt = html_txt + "           <script src=\"js/jquery.js\"><\/script>\r\n";
+      }
+      if(document.getElementById('material').checked){
+         html_txt = html_txt + "           <script src=\"js/jquery.js\"><\/script>\r\n";
+      }
+      if(document.getElementById('Chart.js').checked){
+         html_txt = html_txt + "           <script src=\"js/jquery.js\"><\/script>\r\n";
+      }
+
+      html_txt = html_txt + "   </head>\r\n";
+      html_txt = html_txt + "   <body>\r\n";
+
+
+
+      //ヘッダ
+      var tracking_hd = document.getElementsByName("tracking-hd");
+      html_txt = html_txt + "       <header>\r\n";
+      html_txt = html_txt + "       </header>\r\n";
+
+      html_txt = html_txt + "       <content>\r\n";
+      html_txt = html_txt + "       </content>\r\n";
+
+      if(document.getElementById('sidebar_flag').checked){
+        html_txt = html_txt + "       <sidebar>\r\n";
+
+        if(document.getElementById('ad').checked) {
+          html_txt = html_txt + "         <div id=\"ad\">\r\n";
+          html_txt = html_txt + "         <div id=\"ad\">\r\n";
+        }
+        if(document.getElementById('topic').checked) {
+          html_txt = html_txt + "         <div id=\"topic\">\r\n";
+          html_txt = html_txt + "         <div id=\"topic\">\r\n";
+        }
+        if(document.getElementById('category').checked) {
+          html_txt = html_txt + "         <div id=\"category\">\r\n";
+          html_txt = html_txt + "         <div id=\"category\">\r\n";
+        }
+        if(document.getElementById('sns').checked) {
+          html_txt = html_txt + "         <div id=\"sns\">\r\n";
+          html_txt = html_txt + "         <div id=\"sns\">\r\n";
+        }
+        html_txt = html_txt + "       </sidebar>\r\n";
+      } 
+
+
+
+      // 指定されたデータを保持するBlobを作成する。
+      html_txt = html_txt + "   </body>\r\n";
+      html_txt = html_txt + "</html>";
+
+      var html_txt = new Blob([html_txt], { "type" : "application/x-msdownload" });
+      var css_txt  = new Blob([css_txt ], { "type" : "application/x-msdownload" });
+      var js_txt   = new Blob([js_txt  ], { "type" : "application/x-msdownload" });
+
+      // Aタグのhref属性にBlobオブジェクトを設定し、リンクを生成
+      window.URL = window.URL || window.webkitURL;
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(html_txt);
+      a.download = "customize.html";
+
+      /*
+      ↓ firefoxでは動作しない。対策方法 ↓
+      http://language-and-engineering.hatenablog.jp/entry/20090907/p1#%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E4%B8%8D%E5%85%B7%E5%90%88
+      */
+      a.click();
+
+    }
+
+
+
+    </script>
+
+  </head>
+  <body>
+
+
+  <h2>タイトル</h2>
+    <p>
+       <input type="text" name="title" size="40" maxlength="20">
+    </p>
+
+
+  <h2>ライブラリ</h2>
+    <p>使用するライブラリにチェックをつけてください</p>
+
+    <input type="checkbox" name="lib" id="jquery"> jQuery
+    <input type="checkbox" name="lib" id="jquery-ui"> jQuery-ui
+    <input type="checkbox" name="lib" id="bootstrap"> bootstrap
+    <input type="checkbox" name="lib" id="material"> material
+    <input type="checkbox" name="lib" id="Chart.js"> chart
+
+  <h3>サンプル</h3>
+
+
+
+  <h2>ヘッダ</h2>
+    <input type="radio" name="header" id="header_flag" checked="checked" onclick="header();"> つける
+    <input type="radio" name="header" id="header_flag" onclick="header();"> つけない
+
+    <div id="hd-menu">
+      <input type="checkbox" name="hd-menu" id="ad"> 広告枠（画像）
+      <input type="checkbox" name="hd-menu" id="topic"> トピックを並べる（画像＋タイトル）
+      <input type="checkbox" name="hd-menu" id="category"> カテゴリリスト（リスト）
+      <input type="checkbox" name="hd-menu" id="sns"> SNSプラグインをつける 
+    </div>
+
+
+  <h2>メインコンテナ</h2>
+
+
+  <h2>サイドバー</h2>
+
+    <input type="radio" name="sidebar" id="sidebar_flag" checked="checked" onclick="sidebar();"> つける
+    <input type="radio" name="sidebar" id="no_sidebar_flag" onclick="sidebar();"> つけない
+
+    <div id="sd-menu">
+      <input type="checkbox" name="sd-menu" id="ad"> 広告枠（画像）
+      <input type="checkbox" name="sd-menu" id="tpic"> トピックを並べる（画像＋タイトル）
+      <input type="checkbox" name="sd-menu" id="category"> カテゴリリスト（リスト）
+      <input type="checkbox" name="sd-menu" id="sns"> SNSプラグインをつける 
+    </div>
+
+  <h2>フッター</h2>
+
+  <button onClick="FormSubmit();">プレビュー</button>
+
+  </body>
+  <script>
+
+    function sidebar(){
+      if(document.getElementById('sidebar_flag').checked){ //なぜかセレクタが使えないのでdocument.getElementを使う
+        $('#sd-menu').css('display', 'block');
+      } else {
+        $('#sd-menu').css('display', 'none');
+      } 
+   }
+
+
+    function header(){
+      if(document.getElementById('header_flag').checked){ //なぜかセレクタが使えないのでdocument.getElementを使う
+        $('#hd-menu').css('display', 'block');
+      } else {
+        $('#hd-menu').css('display', 'none');
+      } 
+   }
+
+  </script>
+
+</html>
