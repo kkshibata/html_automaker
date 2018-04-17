@@ -8,6 +8,7 @@
 
     <script src="js/jquery.js"></script>
     <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <script src="js/jquery-ui.js"></script>
 
 
@@ -74,7 +75,7 @@
         if(document.getElementById('ad').checked) {
           html_txt = html_txt + "         <div id=\"ad\">\r\n";
           html_txt = html_txt + "             <a href=\"\">\r\n";
-          html_txt = html_txt + "             <img src=\"\" alt="広告画像" width=\"300px\" height=\"250px\">\r\n";
+          html_txt = html_txt + "             <img src=\"\" alt=\"広告画像\" width=\"300px\" height=\"250px\">\r\n";
           html_txt = html_txt + "             </a>\r\n";
           html_txt = html_txt + "             <div id=\"ad\">\r\n";
           html_txt = html_txt + "         <div id=\"ad\">\r\n";
@@ -82,7 +83,7 @@
         if(document.getElementById('topic').checked) {
           html_txt = html_txt + "         <div id=\"topic\">\r\n";
           html_txt = html_txt + "             <a href=\"\">\r\n";
-          html_txt = html_txt + "             <img src=\"\" alt="トピック画像" width=\"100px\" height=\"100px\">\r\n";
+          html_txt = html_txt + "             <img src=\"\" alt=\"トピック画像\" width=\"100px\" height=\"100px\">\r\n";
           html_txt = html_txt + "             </a>\r\n";
           html_txt = html_txt + "             <a href=\"\">\r\n";
           html_txt = html_txt + "             <p>トピック</p>\r\n";
@@ -132,9 +133,9 @@
 
 
   <h2>タイトル</h2>
-    <p>
+    <div class="elements">
        <input type="text" name="title" size="40" maxlength="20">
-    </p>
+    </div>
 
 
   <h2>ライブラリ</h2>
@@ -168,8 +169,14 @@
 
 
   <h2>メインコンテナ</h2>
-
-
+  
+<h1>チェックボックスのデザイン</h1>
+<input type="checkbox" name="#" value="appple" id="appple" />
+<label for="appple" class="sample_label">りんご</label>
+<input type="checkbox" name="#" value="pineapple" id="pineapple" />
+<label for="pineapple" class="sample_label">ぶどう</label>
+<input type="checkbox" name="#" value="orange" id="orange" />
+<label for="orange" class="sample_label">みかん</label>
 
 
   <h2>サイドバー</h2>
